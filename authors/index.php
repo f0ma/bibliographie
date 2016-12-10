@@ -165,7 +165,7 @@ $(function () {
 ?>
 
 <em style="float: right;">
-	<a href="/bibliographie/authors/?task=authorEditor&amp;author_id=<?php echo ((int) $author->author_id)?>"><?php echo bibliographie_icon_get('user-edit')?> Edit</a>
+	<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/authors/?task=authorEditor&amp;author_id=<?php echo ((int) $author->author_id)?>"><?php echo bibliographie_icon_get('user-edit')?> Edit</a>
 	<a href="javascript:;" onclick="bibliographie_authors_confirm_delete(<?php echo $author->author_id?>)"><?php echo bibliographie_icon_get('user-delete')?> Delete</a>
 </em>
 <h3><?php echo bibliographie_authors_parse_data($author)?></h3>
