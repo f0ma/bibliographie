@@ -19,7 +19,6 @@ session_start();
 header('Content-Type: text/html; charset=UTF-8');
 setlocale(LC_ALL, array('en_US.UTF-8', 'en_US', 'en'));
 mb_internal_encoding('UTF-8');
-date_default_timezone_set('Europe/Berlin');
 
 /**
  * Check for config file.
@@ -27,6 +26,8 @@ date_default_timezone_set('Europe/Berlin');
 if (!file_exists(dirname(__FILE__) . '/config.php'))
   exit('Sorry, but we have no config file!');
 require dirname(__FILE__) . '/config.php';
+
+date_default_timezone_set(BIBLIOGRAPHIE_DEFAULT_TIMEZONE);
 
 /**
  * Check for necessary directories.
