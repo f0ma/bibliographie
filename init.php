@@ -51,8 +51,18 @@ require dirname(__FILE__) . '/resources/functions/general.php';
  * Exit if apache authentification is void.
  */
 if (!isset($_SERVER['PHP_AUTH_USER']))
-  bibliographie_exit('Authentication error', 'It seems that there is an error with your authentication. Bibliographie can not read your login name and must therefore stop right here.');
+{
+  // Override PHP_AUTH_USER if
 
+  if(defined('BIBLIOGRAPHIE_DEVELOPMENT_USER'))
+  {
+    $_SERVER['PHP_AUTH_USER'] = BIBLIOGRAPHIE_DEVELOPMENT_USER;
+  }
+  else
+  {
+    bibliographie_exit('Authentication error', 'It seems that there is an error with your authentication. Bibliographie can not read your login name and must therefore stop right here.');
+  }
+}
 /**
  * If root path isnt defined by program file then define it now with the default value.
  */
