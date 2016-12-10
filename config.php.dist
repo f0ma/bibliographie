@@ -1,0 +1,36 @@
+<?php
+// MySQL connection data
+define('BIBLIOGRAPHIE_MYSQL_HOST', 'localhost');
+define('BIBLIOGRAPHIE_MYSQL_USER', '');
+define('BIBLIOGRAPHIE_MYSQL_PASSWORD', '');
+define('BIBLIOGRAPHIE_MYSQL_DATABASE', '');
+
+// Root path of bibliographie without ending slash.
+define('BIBLIOGRAPHIE_WEB_ROOT', '');
+
+// Minimum of chars needed to start a search. Should be the same as the minimum length of MySQL fulltext index length.
+define('BIBLIOGRAPHIE_SEARCH_MIN_CHARS', 4);
+
+// Configuration for the tag cloud.
+define('BIBLIOGRAPHIE_TAG_SIZE_FACTOR', 100);
+define('BIBLIOGRAPHIE_TAG_SIZE_MINIMUM', 10);
+define('BIBLIOGRAPHIE_TAG_SIZE_FLATNESS', 40);
+
+// If you have a key for ISBNDB.com put it here.
+define('BIBLIOGRAPHIE_ISBNDB_KEY', '');
+
+// One of 'errors', 'all' or false
+define('BIBLIOGRAPHIE_DATABASE_DEBUG', false);
+
+// Wether to use caching or not. Highly recommended for large databases.
+define('BIBLIOGRAPHIE_CACHING', true);
+
+// Prefix for the mysql tables.
+define('BIBLIOGRAPHIE_PREFIX', 'a2');
+
+//Development user 
+//WARNING: .htaccsess bypass
+//define('BIBLIOGRAPHIE_DEVELOPMENT_USER', 'user');
+
+//Default timezone
+define('BIBLIOGRAPHIE_DEFAULT_TIMEZONE', 'Europe/Berlin');
