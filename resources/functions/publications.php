@@ -1625,25 +1625,25 @@ WHERE
  * @return type
  */
 function bibliographie_publications_search_publications($query, $expandedQuery = '') {
-  $return = array();
+//  $return = array();
 
-  $ch = curl_init();
+//  $ch = curl_init();
 
-  curl_setopt($ch, CURLOPT_URL, 'http://localhost:9200/bibliographie/publications/_search?pretty=true');
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, '{"from":0,"size":1000,"query":{"filtered":{"query":{"query_string":{"query":' . json_encode($query) . '}}}}}');
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//  curl_setopt($ch, CURLOPT_URL, 'http://localhost:9200/bibliographie/publications/_search?pretty=true');
+//  curl_setopt($ch, CURLOPT_POST, 1);
+//  curl_setopt($ch, CURLOPT_POSTFIELDS, '{"from":0,"size":1000,"query":{"filtered":{"query":{"query_string":{"query":' . json_encode($query) . '}}}}}');
+//  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   //execute post
-  $result = json_decode(curl_exec($ch));
+//  $result = json_decode(curl_exec($ch));
 
-  foreach ($result->hits->hits as $publication) {
-    $return[] = $publication->_id;
-  }
+//  foreach ($result->hits->hits as $publication) {
+    //$return[] = $publication->_id;
+//  }
 
-  return $return;
+//  return $return;
 
-  if (0 != 0) {
+//  if (0 != 0) {
     if (mb_strlen($query) >= BIBLIOGRAPHIE_SEARCH_MIN_CHARS) {
       if (empty($expandedQuery))
         $expandedQuery = bibliographie_search_expand_query($query);
@@ -1694,7 +1694,7 @@ ORDER BY
         fclose($cacheFile);
       }
     }
-  }
+//  }
 
   return $return;
 }

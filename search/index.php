@@ -111,8 +111,9 @@ switch ($_GET['task']) {
         }
       }
 
-      if (empty($_GET['category']) or $_GET['category'] == 'bookmarks')
-        $searchResults['bookmarks'] = array_values(array_intersect($searchResults['publications'], bibliographie_bookmarks_get_bookmarks()));
+# Bug in this function call 
+//      if (empty($_GET['category']) or $_GET['category'] == 'bookmarks')
+//        $searchResults['bookmarks'] = array_values(array_intersect($searchResults['publications'], bibliographie_bookmarks_get_bookmarks()));
 
       if (empty($_GET['category']) or $_GET['category'] == 'journals')
         $searchResults['journals'] = bibliographie_publications_search_journals($_GET['q'], $expandedQuery);
