@@ -1075,6 +1075,47 @@ WHERE
 			echo '<p class="error">Publication was not found!</p>';
 		}
 		break;
+
+    case 'listPublications':
+
+        $pub_ids_query = DB::getInstance()->prepare('SELECT `pub_id`,`title`,`year` FROM `'.BIBLIOGRAPHIE_PREFIX.'publication` ORDER BY `year` DESC');
+        $pub_ids_query->execute();
+        
+        bibliographie_history_append_step('publications', 'Showing publications list');
+
+        if ($pub_ids_query->rowCount() > 0) {
+            $pub_ids_query->setFetchMode(PDO::FETCH_OBJ);
+            $pub_ids = $pub_ids_query->fetchAll();
+
+            $cyear = 3000;
+
+            foreach ($pub_ids as $pub_rec) {
+                if($pub_rec->year != $cyear)
+                {
+                    $cyear = $pub_rec->year;
+                    echo "<h3>$cyear</h3>";
+                }
+
+                $publication = bibliographie_publications_get_data($pub_rec->pub_id);
+                $publication = (array) $publication;
+
+                echo bibliographie_publications_print_list(
+                        array($publication['pub_id']), BIBLIOGRAPHIE_WEB_ROOT . '/publications/?task=publicationEditor&amp;pub_id=' . ((int) $publication['pub_id']), array(
+                        'onlyPublications' => true
+                        )
+                    );
+            }
+
+        } else {
+
+        echo '<p class="notice">No publications found.</p>';
+
+        }
+
+
+
+
+        break;
 }
 
 require BIBLIOGRAPHIE_ROOT_PATH . '/close.php';

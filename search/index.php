@@ -100,16 +100,16 @@ switch ($_GET['task']) {
       if (empty($_GET['category']) or $_GET['category'] == 'authors')
         $searchResults['authors'] = bibliographie_authors_search_authors($_GET['q']);
 
-      if (empty($_GET['category']) or $_GET['category'] == 'notes') {
-        $searchResults['notes'] = bibliographie_notes_search_notes($_GET['q'], $expandedQuery);
-        if (count(bibliographie_notes_get_publications_with_notes()) > 0) {
-          $publications = array_intersect(bibliographie_publications_search_publications($_GET['q'], $expandedQuery), bibliographie_notes_get_publications_with_notes());
-          if (count($publications) > 0)
-            foreach ($publications as $publication)
-              foreach (bibliographie_publications_get_notes($publication) as $note)
-                $searchResults['notes'][] = $note;
-        }
-      }
+//      if (empty($_GET['category']) or $_GET['category'] == 'notes') {
+//        $searchResults['notes'] = bibliographie_notes_search_notes($_GET['q'], $expandedQuery);
+//        if (count(bibliographie_notes_get_publications_with_notes()) > 0) {
+//          $publications = array_intersect(bibliographie_publications_search_publications($_GET['q'], $expandedQuery), bibliographie_notes_get_publications_with_notes());
+//          if (count($publications) > 0)
+//            foreach ($publications as $publication)
+//              foreach (bibliographie_publications_get_notes($publication) as $note)
+//                $searchResults['notes'][] = $note;
+//        }
+//      }
 
 # Bug in this function call 
 //      if (empty($_GET['category']) or $_GET['category'] == 'bookmarks')

@@ -66,6 +66,7 @@
 			<div id="menu">
 				<h3><?php echo bibliographie_icon_get('find')?> Browse</h3>
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/topics/?task=showGraph"><?php echo bibliographie_icon_get('sitemap')?> Topic graph</a>
+				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/publications/?task=listPublications"><?php echo bibliographie_icon_get('table')?> Publications</a>
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/authors/?task=showList"><?php echo bibliographie_icon_get('group')?> Authors</a>
 				<br />
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/bookmarks/?task=showBookmarks"><?php echo bibliographie_icon_get('star')?> Bookmarks</a>

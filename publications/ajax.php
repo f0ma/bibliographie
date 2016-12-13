@@ -148,7 +148,8 @@ WHERE
 								'stripDelimiter' => true,
 								'validate' => true,
 								'unwrap' => true,
-								'extractAuthors' => true
+								'extractAuthors' => true,
+								'escapeChars' => false
 							));
 
 						$publications = $result->fetchAll();

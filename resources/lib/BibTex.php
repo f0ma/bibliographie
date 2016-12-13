@@ -1201,7 +1201,8 @@ class Structures_BibTex {
 			'wordWrapBreak' => "\n",
 			'wordWrapCut' => 0,
 			'removeCurlyBraces' => false,
-			'extractAuthors' => true
+			'extractAuthors' => true,
+			'escapeChars' => true
 		);
 
 		foreach ($options as $option => $value) {
@@ -1266,6 +1267,20 @@ class Structures_BibTex {
 		$this->_oldpos = 0;
 
 		return true;
+	}
+
+	/**
+	 * Replace Escaped Chars
+	 *
+	 * @access public
+	 * @param string $value Input string
+	 * @return string String with replaced chars
+	 */
+    function replaceEscapedChars($value) {
+    	if ($this->_options['escapeChars']) {
+	    	return str_replace(array_values($this->escapedChars), array_keys($this->escapedChars), $value);
+	    }
+	    return $value;
 	}
 
 	/**
@@ -1449,7 +1464,7 @@ class Structures_BibTex {
 				$field = strtolower(trim(substr($entry, $position + 1)));
 
 				if($field != 'author' and $field != 'editor')
-					$value = str_replace(array_values($this->escapedChars), array_keys($this->escapedChars), $value);
+					$value = $this->replaceEscapedChars($value);
 
 				$ret[$field] = $value;
 				$entry = substr($entry, 0, $position);
@@ -2008,7 +2023,7 @@ class Structures_BibTex {
 				}
 				if (!in_array($key, array('cite', 'entryType', 'author', 'editor'))) {
 					if($key != 'url')
-						$val = str_replace(array_keys($this->escapedChars), array_values($this->escapedChars), $val);
+						$val = $this->replaceEscapedChars($val);
 					if($key == 'pages')
 						$val = str_replace('-', '--', $val);
 
@@ -2043,10 +2058,10 @@ class Structures_BibTex {
 			}
 
 			if(!empty($author))
-				$bibtex .= "\tauthor = {" . str_replace(array_keys($this->escapedChars), array_values($this->escapedChars), $author) . "}";
+				$bibtex .= "\tauthor = {" . $this->replaceEscapedChars($author) . "}";
 
 			if(!empty($editor))
-				$bibtex .= ",\n\teditor = {" . str_replace(array_keys($this->escapedChars), array_values($this->escapedChars), $editor) . "}";
+				$bibtex .= ",\n\teditor = {" . $this->replaceEscapedChars($editor) . "}";
 			$bibtex.="\n}\n\n";
 		}
 		return $bibtex;
