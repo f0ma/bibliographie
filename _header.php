@@ -76,7 +76,7 @@
 
 				<h3><?php echo bibliographie_icon_get('add')?> Add data</h3>
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/publications/?task=publicationEditor"><?php echo bibliographie_icon_get('page-white-add')?> Publication</a>
-				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/publications/?task=fetchData"><?php echo bibliographie_icon_get('page-white-get')?> Use source</a>
+				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/publications/?task=fetchData"><?php echo bibliographie_icon_get('page-white-get')?> Import</a>
 				<br />
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/topics/?task=topicEditor"><?php echo bibliographie_icon_get('folder-add')?> Topic</a>
 				<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/authors/?task=authorEditor"><?php echo bibliographie_icon_get('user-add')?> Author</a>

@@ -133,7 +133,8 @@ switch ($_GET['task']) {
 	`title`,
 	`url`,
 	`volume`,
-	`year`
+	`year`,
+	`userfields`
 FROM
 	`" . BIBLIOGRAPHIE_PREFIX . "publication`
 WHERE
@@ -174,9 +175,19 @@ WHERE
 									$publication['editor'][] = bibliographie_authors_parse_data($editor, array('forBibTex' => true));
 
 							$_publication = array();
-							foreach ($publication as $key => $field)
-								if (!empty($field))
-									$_publication[$key] = $field;
+							foreach ($publication as $key => $field) {
+								if (!empty($field)){
+									
+									if($key == 'userfields')
+									{
+										$userfields = parse_ini_string($field);
+										foreach ($userfields as $ukey => $ufield)
+											$_publication[$ukey] = $ufield;
+									} else {
+										$_publication[$key] = $field;
+									}
+								}
+							}
 							$bibtex->data[] = $_publication;
 						}
 
@@ -282,7 +293,8 @@ WHERE
 						'stripDelimiter' => true,
 						'validate' => true,
 						'unwrap' => true,
-						'extractAuthors' => true
+						'extractAuthors' => true,
+						'escapeChars' => false
 					));
 				$ris = new \LibRIS\RisReader();
 				$risTranslator = new \bibliographie\RISTranslator();

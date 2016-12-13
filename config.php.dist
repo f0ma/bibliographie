@@ -34,3 +34,6 @@ define('BIBLIOGRAPHIE_PREFIX', 'a2');
 
 //Default timezone
 define('BIBLIOGRAPHIE_DEFAULT_TIMEZONE', 'Europe/Berlin');
+
+//Alphabet for authors list
+define('BIBLIOGRAPHIE_PAGING_ALPHABET','ABCDEFGHIJKLMNOPQRSTUVWXYZ');

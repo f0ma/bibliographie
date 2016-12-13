@@ -215,7 +215,7 @@ $(function () {
 		`initial`
 ) initials
 WHERE
-	`initial` REGEXP "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"');
+	`initial` REGEXP "['.BIBLIOGRAPHIE_PAGING_ALPHABET.']"');
 
 		if($authors->rowCount() > 0){
 			$initials->setFetchMode();
@@ -242,7 +242,7 @@ WHERE
 			echo '</p>';
 
 			$showAuthors = null;
-			if(in_array($selectedInitial, array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'))){
+			if(in_array($selectedInitial, preg_split('//u', BIBLIOGRAPHIE_PAGING_ALPHABET, null, PREG_SPLIT_NO_EMPTY))){
 				$showAuthors = DB::getInstance()->prepare('SELECT
 	`author_id`, `surname`, `firstname`
 FROM
@@ -261,7 +261,7 @@ FROM
 WHERE
 	UPPER(
 		SUBSTRING(`surname`, 1, 1)
-	) NOT REGEXP "[ABCDEFGHIJKLMNOPQRSTUVWXYZ]"
+	) NOT REGEXP "['.BIBLIOGRAPHIE_PAGING_ALPHABET.']"
 ORDER BY `surname`, `firstname`
 ');
 			}
@@ -276,6 +276,7 @@ ORDER BY `surname`, `firstname`
 	<tr>
 		<th>Surname</th>
 		<th>Firstname</th>
+		<th></th>
 	</tr>
 <?php
 				foreach($authorsArray as $author){
@@ -285,6 +286,11 @@ ORDER BY `surname`, `firstname`
 	<tr>
 		<td><a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/authors/?task=showAuthor&author_id=<?php echo $author->author_id?>"><?php echo $name['surname']?></a></td>
 		<td><?php echo $name['firstname']?></td>
+		<td>
+	<a href="<?php echo BIBLIOGRAPHIE_WEB_ROOT?>/authors/?task=authorEditor&amp;author_id=<?php echo ((int) $author->author_id)?>"><?php echo bibliographie_icon_get('user-edit')?> Edit</a>
+	<a href="javascript:;" onclick="bibliographie_authors_confirm_delete(<?php echo $author->author_id?>)"><?php echo bibliographie_icon_get('user-delete')?> Delete</a>
+		</td>
+
 	</tr>
 <?php
 				}
